@@ -54,7 +54,7 @@ const ImageReel = ({ onComplete }) => {
     const timer = setTimeout(() => {
       setIsVisible(false)
       setTimeout(() => onComplete(), 800)
-    }, 3000)
+    }, 5000)
 
     return () => clearTimeout(timer)
   }, [imagesLoaded, onComplete])
