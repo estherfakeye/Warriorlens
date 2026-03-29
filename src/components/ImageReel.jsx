@@ -26,14 +26,54 @@ const ImageReel = ({ onComplete }) => {
   ]
 
   useEffect(() => {
-    // Auto-hide reel after 5 seconds
+    const images = reelImages.map((src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image()
+        img.onload = resolve
+        img.onerror = reject
+      })
+    })
+
+    Promise.all(images)
+      .then(() => {
+        setImagesLoaded(true)
+      })
+      .catch((err) => {
+        console.error('Error loading images:', err)
+        setImagesLoaded(true) // Show anyway if there's an error
+      })
+  }, [])
+
+   // Auto-hide reel after 5 seconds
+  useEffect(() => {
+    if (!imagesLoaded) return
+   
     const timer = setTimeout(() => {
       setIsVisible(false)
       setTimeout(() => onComplete(), 800) // Wait for animation to finish
     }, 5000)
 
     return () => clearTimeout(timer)
-  }, [onComplete])
+  }, [imagesLoaded, onComplete])
+
+// Show loading screen while images load
+  if (!imagesLoaded) {
+    return (
+      <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl font-bold mb-4 animate-pulse">
+            <span className="text-secondary">Warrior</span>
+            <span className="text-primary">Lens</span>
+          </div>
+          <div className="flex gap-2 justify-center">
+            <div className="w-3 h-3 bg-secondary rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-3 h-3 bg-secondary rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-3 h-3 bg-secondary rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   if (!isVisible) {
     return (
