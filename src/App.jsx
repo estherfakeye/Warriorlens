@@ -11,13 +11,17 @@ import Footer from './components/Footer';
 
 function App() {
   const [showReel, setShowReel] = useState(true)
+  const [showNavbar, setShowNavbar] = useState(false)
 
   return (
     <>
-      {showReel && <ImageReel onComplete={() => setShowReel(false)} />}
+      {showReel && <ImageReel onComplete={() => {
+        setShowReel(false)
+        setShowNavbar(true)
+      }} />}
 
       <div className="bg-dark">
-        <Navbar />
+        <Navbar show={showNavbar}/>
         
         <Hero />
 

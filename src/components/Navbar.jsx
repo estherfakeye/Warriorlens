@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import logo from '../assets/images/logo.png'
 
-const Navbar = () => {
+const Navbar = ({show}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -27,24 +28,27 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ]
 
+  if (!show) return null
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled ? 'bg-dark/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold">
-              <span className="text-secondary">Warrior</span>
-              <span className="text-white">Lens</span>
-            </div>
+          <a href="#home" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="WarriorLens Logo" 
+              className="h-12 w-auto" 
+            />
           </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
