@@ -12,6 +12,7 @@ import client8 from '../assets/images/reel/Portraits/Client8.jpg'
 
 const ImageReel = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true)
+  const [imagesLoaded, setImagesLoaded] = useState(false) // ← YOU WERE MISSING THIS!
 
   // Client images for the reel
   const reelImages = [
@@ -25,16 +26,18 @@ const ImageReel = ({ onComplete }) => {
     client8,
   ]
 
+  // Preload images
   useEffect(() => {
-    const images = reelImages.map((src) => {
+    const imagePromises = reelImages.map((src) => {
       return new Promise((resolve, reject) => {
         const img = new Image()
+        img.src = src // ← YOU WERE MISSING THIS!
         img.onload = resolve
         img.onerror = reject
       })
     })
 
-    Promise.all(images)
+    Promise.all(imagePromises)
       .then(() => {
         setImagesLoaded(true)
       })
@@ -44,19 +47,19 @@ const ImageReel = ({ onComplete }) => {
       })
   }, [])
 
-   // Auto-hide reel after 5 seconds
+  // Auto-hide reel after 5 seconds
   useEffect(() => {
     if (!imagesLoaded) return
-   
+
     const timer = setTimeout(() => {
       setIsVisible(false)
-      setTimeout(() => onComplete(), 800) // Wait for animation to finish
+      setTimeout(() => onComplete(), 800)
     }, 5000)
 
     return () => clearTimeout(timer)
   }, [imagesLoaded, onComplete])
 
-// Show loading screen while images load
+  // Show loading screen while images load
   if (!imagesLoaded) {
     return (
       <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
