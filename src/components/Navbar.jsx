@@ -40,20 +40,22 @@ const Navbar = ({show}) => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#home" className="flex items-center">
-            <img 
-              src={logo} 
-              alt="WarriorLens Logo" 
-              className="h-12 w-auto" 
-            />
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <img 
+                src={logo} 
+                alt="WarriorLens" 
+                className="w-12 h-12 object-contain"
+              />
+            </div>
           </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <div className="hidden md:flex items-center gap-8 lg:gap-12">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-white hover:text-secondary transition-colors duration-300 font-medium"
+                className="text-white hover:text-secondary transition-colors duration-300 font-medium text-base"
               >
                 {link.name}
               </a>

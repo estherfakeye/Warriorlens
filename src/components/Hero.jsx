@@ -6,10 +6,10 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-[#3a5a37] to-dark"
+      className="relative min-h-screen  flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-[#3a5a37] to-dark"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20"> 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-12 py-24"> 
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
       
       {/* Left: Text Content - SIMPLIFIED */}
           <motion.div
@@ -100,29 +100,26 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="relative"
+            className="relative hidden lg:block"
           >
-            {/* Corner brackets like Aperture */}
-            <div className="absolute -top-4 -left-4 w-16 h-16 border-t-4 border-l-4 border-secondary"></div>
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 border-b-4 border-r-4 border-secondary"></div>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+              <h2 
+                className="text-[12rem] xl:text-[14rem] font-black text-white/5 leading-none tracking-tighter select-none"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                WARRIOR
+                <br />
+                LENS
+              </h2>
+            </div>
 
-            {/* Photographer image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative z-10">
               <img
                 src={photographerImg}
-                alt="Obe Oluwagbemiga - WarriorLens Photographer"
-                className="w-full h-auto object-cover"
+                alt="WarriorLens Photographer"
+                className="w-full h-auto object-contain drop-shadow-2xl" {/* ← CHANGED: object-contain for transparent bg */}
+                style={{ mixBlendMode: 'normal' }}
               />
-              
-              {/* Overlay text on image */}
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent flex items-end p-8">
-                <div className="text-white">
-                  <h3 className="text-4xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
-                    OBE
-                  </h3>
-                  <p className="text-light/80">Creative Photographer</p>
-                </div>
-              </div>
             </div>
           </motion.div>
 

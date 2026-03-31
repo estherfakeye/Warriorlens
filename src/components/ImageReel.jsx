@@ -31,19 +31,15 @@ const ImageReel = ({ onComplete }) => {
     const imagePromises = reelImages.map((src) => {
       return new Promise((resolve, reject) => {
         const img = new Image()
-        img.src = src // ← YOU WERE MISSING THIS!
-        img.onload = resolve
-        img.onerror = reject
+        img.src = src 
+        img.onload = () => resolve
+        img.onerror = () => reject
       })
     })
 
     Promise.all(imagePromises)
       .then(() => {
         setImagesLoaded(true)
-      })
-      .catch((err) => {
-        console.error('Error loading images:', err)
-        setImagesLoaded(true) // Show anyway if there's an error
       })
   }, [])
 
