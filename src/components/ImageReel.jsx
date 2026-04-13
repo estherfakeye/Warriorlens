@@ -81,17 +81,21 @@ const ImageReel = ({ onComplete }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-white z-50 flex items-center justify-center overflow-hidden">
-      {/* Rotating photo reel */}
-      <div className="relative w-[700px] h-[700px] animate-[spin_20s_linear_infinite]">
+    <div className="fixed inset-0 bg-white z-50 flex items-center justify-center overflow-hidden px-4">
+      {/* Rotating photo reel - CHANGED: Responsive sizing */}
+      <div className="relative w-[280px] h-[280px] sm:w-[500px] sm:h-[500px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] animate-[spin_20s_linear_infinite]">
         {reelImages.map((img, index) => {
           const angle = index * (360 / reelImages.length)
+          const radius = typeof window !== 'undefined' ? 
+            (window.innerWidth < 640 ? 120 : window.innerWidth < 768 ? 200 : window.innerWidth < 1024 ? 240 : 280) 
+            : 280
+          
           return (
             <div
               key={index}
-              className="absolute top-1/2 left-1/2 w-40 h-60 -translate-x-1/2 -translate-y-1/2 rounded-lg overflow-hidden shadow-2xl"
+              className="absolute top-1/2 left-1/2 w-24 h-36 sm:w-32 sm:h-48 md:w-36 md:h-52 lg:w-40 lg:h-60 -translate-x-1/2 -translate-y-1/2 rounded-lg overflow-hidden shadow-2xl" {/* ← CHANGED: Responsive sizes */}
               style={{
-                transform: `rotate(${angle}deg) translate(280px) rotate(-${angle}deg)`
+                transform: `rotate(${angle}deg) translate(${radius}px) rotate(-${angle}deg)`
               }}
             >
               <img
@@ -104,9 +108,9 @@ const ImageReel = ({ onComplete }) => {
         })}
       </div>
 
-      {/* Center logo */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-6xl font-bold animate-pulse">
+      {/* Center logo - CHANGED: Responsive text size */}
+      <div className="absolute inset-0 flex items-center justify-center px-4">
+        <div className="text-4xl sm:text-5xl md:text-6xl font-bold animate-pulse text-center">
           <span className="text-secondary">Warrior</span>
           <span className="text-primary">Lens</span>
         </div>
