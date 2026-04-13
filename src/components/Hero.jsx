@@ -42,7 +42,7 @@ const Hero = () => {
               <span className="text-secondary">God's Beauty</span>
             </motion.h1>
 
-            {/* Subtext - SHORTENED */}
+            {/* Subtext */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -95,7 +95,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right: Photographer Image - NEW SECTION */}
+          {/* Right: Photographer Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -117,7 +117,7 @@ const Hero = () => {
               <img
                 src={photographerImg}
                 alt="WarriorLens Photographer"
-                className="w-full h-auto object-contain drop-shadow-2xl" {/* ← CHANGED: object-contain for transparent bg */}
+                className="w-full h-auto object-contain drop-shadow-2xl" 
                 style={{ mixBlendMode: 'normal' }}
               />
             </div>
