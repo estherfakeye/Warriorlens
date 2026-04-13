@@ -93,7 +93,7 @@ const ImageReel = ({ onComplete }) => {
           return (
             <div
               key={index}
-              className="absolute top-1/2 left-1/2 w-24 h-36 sm:w-32 sm:h-48 md:w-36 md:h-52 lg:w-40 lg:h-60 -translate-x-1/2 -translate-y-1/2 rounded-lg overflow-hidden shadow-2xl" {/* ← CHANGED: Responsive sizes */}
+              className="absolute top-1/2 left-1/2 w-24 h-36 sm:w-32 sm:h-48 md:w-36 md:h-52 lg:w-40 lg:h-60 -translate-x-1/2 -translate-y-1/2 rounded-lg overflow-hidden shadow-2xl" 
               style={{
                 transform: `rotate(${angle}deg) translate(${radius}px) rotate(-${angle}deg)`
               }}
