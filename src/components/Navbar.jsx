@@ -33,21 +33,21 @@ const Navbar = ({show}) => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-dark/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+        scrolled ? 'bg-dark/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-16">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20"> {/* ← CHANGED: Matches hero exactly */}
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <a href="#home" className="flex items-center">
-            <div className="text-xl md:text-2xl font-bold">
-              <span className="text-secondary">Warrior</span>
+          <a href="#home" className="flex items-center group">
+            <div className="text-xl md:text-2xl font-bold transition-colors">
+              <span className="text-secondary group-hover:text-accent transition-colors">Warrior</span>
               <span className="text-white">Lens</span>
             </div>
           </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-10">
+          <div className="hidden md:flex items-center gap-8 lg:gap-12">
             {navLinks.map((link) => (
               <a
                 key={link.name}
